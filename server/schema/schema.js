@@ -36,6 +36,12 @@ const ClientType = new GraphQLObjectType({
     name: { type: GraphQLString },
     email: { type: GraphQLString },
     phone: { type: GraphQLString },
+    projects: {
+      type: GraphQLList(ProjectType),
+      resolve(parent, args) {
+        return Project.find({ clientId: parent._id });
+      },
+    }
   }),
 });
 
